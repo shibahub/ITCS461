@@ -1,7 +1,7 @@
 from importlib.resources import path
 import cv2
-import numpy
-import face_recognition
+import numpy as np
+import face_recognition as fr
 import os
 
 path = 'Pic'
@@ -19,8 +19,8 @@ print(Name)
 def encodeImg(image):
     encodeList=[]
     for img in image:
-        img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-        encode = face_recognition.encode(img)[0]
+        img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB) 
+        encode = fr.face_encodings(img)[0]
         encodeList.append(encode)
     return encodeList
 
@@ -28,3 +28,4 @@ def encodeImg(image):
 
 encodeKnownuser= encodeImg(image)
 print(len(encodeKnownuser))
+cap =cv2.VideoCapture(0)
